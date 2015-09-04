@@ -121,5 +121,17 @@ module Github
       delete_request("/orgs/#{arguments.org_name}/public_members/#{arguments.user}", arguments.params)
     end
     alias :conceal_membership :conceal
+
+    # Add or Update a user's membership
+    #
+    # @example
+    #  github = Github.new oauth_token: '...'
+    #  github.orgs.memberships.addupdateuser 'org-name', 'member-name', 'role'
+    # @api public
+    def addupdateuser(*args)
+	arguments(args, required: [:org_name, :user, :role])
+	
+	put_request("/orgs/#{arguments.org_name}/memberships/#{arguments.user}", arguments.params)
+    end
   end # Client::Orgs::Members
 end # Github
