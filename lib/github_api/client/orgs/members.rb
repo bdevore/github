@@ -122,7 +122,7 @@ module Github
     end
     alias :conceal_membership :conceal
 
-    # Add or Update a user's membership
+    # Add or Update a user's membership for an organization. Supports roles of member or admin.
     #
     # @example
     #  github = Github.new oauth_token: '...'
@@ -133,5 +133,6 @@ module Github
 	
 	put_request("/orgs/#{arguments.org_name}/memberships/#{arguments.user}", arguments.params)
     end
+    alias :add_update_user :addupdateuser
   end # Client::Orgs::Members
 end # Github
